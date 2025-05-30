@@ -7,7 +7,9 @@ load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 intents = discord.Intents.default()
-intents.members = True  # Required for DM functionality
+intents.message_content = True  # ← Add this line
+intents.members = True          # ← Required for role checks
+
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 async def setup():
