@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-TOKEN = os.getenv("TOKEN")
+TOKEN = os.getenv("MTM3ODAyMDA1ODI1MjcwNTgwMg.GkmYwK.Rut-fYZ27L-Vg3E3TKzuBYb92GiH8UHtaFuFHo")
 
 intents = discord.Intents.default()
 intents.message_content = True  # ← Add this line
@@ -27,4 +27,4 @@ async def on_connect():
     from deploy_cog import DeployCog
     await bot.add_cog(DeployCog(bot))
 
-bot.run(TOKEN)
+bot.run(MTM3ODAyMDA1ODI1MjcwNTgwMg.GkmYwK.Rut-fYZ27L-Vg3E3TKzuBYb92GiH8UHtaFuFHo)
