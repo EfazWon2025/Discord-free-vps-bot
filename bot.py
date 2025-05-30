@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-TOKEN = os.environ("discordkey")
+TOKEN = os.getenv("discordkey")
 
 intents = discord.Intents.default()
 intents.message_content = True  # ← Add this line
