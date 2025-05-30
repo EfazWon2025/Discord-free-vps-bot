@@ -29,4 +29,4 @@ async def on_connect():
     from deploy_cog import DeployCog
     await bot.add_cog(DeployCog(bot))
 
-bot.run(MTM3ODAyMDA1ODI1MjcwNTgwMg.GkmYwK.Rut-fYZ27L-Vg3E3TKzuBYb92GiH8UHtaFuFHo)
+bot.run(TOKEN)
