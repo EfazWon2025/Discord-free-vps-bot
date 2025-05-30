@@ -4,7 +4,9 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-TOKEN = os.getenv("MTM3ODAyMDA1ODI1MjcwNTgwMg.GkmYwK.Rut-fYZ27L-Vg3E3TKzuBYb92GiH8UHtaFuFHo")
+TOKEN = '' # TOKEN HERE
+RAM_LIMIT = '8g'
+SERVER_LIMIT = 12
 
 intents = discord.Intents.default()
 intents.message_content = True  # ← Add this line
