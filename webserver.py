@@ -1,24 +1,35 @@
-import discord
-from discord.ext import commands
-import os
-import webserver
+from flask import Flask
+from threading import Thread
+import logging
 
-DISCORD_TOKEN = os.environ['discordkey']
-MENTIONED_USER_ID = '1220762300868260645'
+# Configure minimal logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-intents = discord.Intents.default()
-intents.message_content = True
-bot = commands.Bot(command_prefix='!', intents=intents)
+app = Flask(__name__)
 
-@bot.event
-async def on_message(message):
-    if MENTIONED_USER_ID in [str(user.id) for user in message.mentions]:
-        try:
-            for i in range(50):
-                await message.author.send("GET SPAMMED")
-        except discord.Forbidden:
-            await message.channel.send(f"{message.author.mention}, I tried to DM you but couldn't. Please enable DMs.")
-    await bot.process_commands(message)
+@app.route('/')
+def health_check():
+    """Endpoint for health monitoring"""
+    return {
+        "status": "online",
+        "service": "discord-vps-bot",
+        "message": "VPS deployment bot is running"
+    }, 200
 
-webserver.keep_alive()
-bot.run(DISCORD_TOKEN)
+@app.route('/ping')
+def ping():
+    """Liveness probe endpoint"""
+    return "pong", 200
+
+def run_webserver():
+    """Start the Flask server in production mode"""
+    from waitress import serve
+    logger.info("Starting webserver on port 8080")
+    serve(app, host="0.0.0.0", port=8080)
+
+def keep_alive():
+    """Start the webserver in a background thread"""
+    server = Thread(target=run_webserver, daemon=True)
+    server.start()
+    logger.info("Webserver thread started")
