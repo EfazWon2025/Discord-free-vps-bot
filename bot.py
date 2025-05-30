@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-TOKEN = '' # TOKEN HERE
+TOKEN = 'MTM3ODAyMDA1ODI1MjcwNTgwMg.GMNxMa.QdYKOsRpvJ6DYR2jZmc4gAFUUPHBzqbT2Vzp3I' # TOKEN HERE
 RAM_LIMIT = '8g'
 SERVER_LIMIT = 12
 
